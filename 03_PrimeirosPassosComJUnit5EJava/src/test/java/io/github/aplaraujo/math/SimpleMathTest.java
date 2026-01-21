@@ -4,6 +4,7 @@ package io.github.aplaraujo.math;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -105,6 +106,21 @@ public class SimpleMathTest {
         Double actual = math.squareRoot(number);
         Double expected = 2D;
         assertEquals(expected, actual, () -> "The square root of " + number + " did not produce  " + expected + "!");
+    }
+
+    @Test
+    @DisplayName("Test division by zero")
+    void testDivision_WhenFirstNumberIsDividedByZero_ShouldThrowArithmeticException() {
+        double firstNumber = 6D;
+        double secondNumber = 0D;
+
+        var message = "Impossible to divide by zero!";
+
+        ArithmeticException actual = assertThrows(ArithmeticException.class, () -> {
+            math.divide(firstNumber, secondNumber);
+        }, () -> "Division by zero should throw an ArithmeticException ");
+
+        assertEquals(message, actual.getMessage(), () -> "Unexpected exception message!");
     }
 
     // Template
