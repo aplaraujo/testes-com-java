@@ -1,15 +1,17 @@
 package io.github.aplaraujo.math;
 
 
-import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class SimpleMathTest {
     @Test
     void testSum() {
         SimpleMath math = new SimpleMath();
-        Double actual = math.sum(6.2D, 2D);
+        double firstNumber = 6.2D;
+        double secondNumber = 2D;
+        Double actual = math.sum(firstNumber, secondNumber);
         Double expected = 8.2D;
-        Assertions.assertEquals(expected, actual);
+        assertEquals(expected, actual, () -> firstNumber + " + " + secondNumber + " did not produce " + expected + "!");
     }
 }
