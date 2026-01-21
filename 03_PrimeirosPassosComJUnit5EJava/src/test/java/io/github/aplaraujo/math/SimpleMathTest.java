@@ -2,6 +2,7 @@ package io.github.aplaraujo.math;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -77,6 +78,7 @@ public class SimpleMathTest {
     // Template
     // test[System Under Test]_[Condition or State Change]_[Expected Result]
     // Exemplo: testSum_WhenSixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo
+    @Disabled // Anotação usada para desabilitar testes
     @Test
     @DisplayName("Display name")
     void testABCD_When_XYZ_Should() {
