@@ -9,11 +9,14 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 + 2 = 8.2")
     void testSum() {
+        // Given (Arrange) - definição das variáveis que serão usadas no teste
         SimpleMath math = new SimpleMath();
         double firstNumber = 6.2D;
         double secondNumber = 2D;
-        Double actual = math.sum(firstNumber, secondNumber);
         Double expected = 8.2D;
+        // When (Act) - invocação das variáveis que serão testadas
+        Double actual = math.sum(firstNumber, secondNumber);
+        // Then (Assert) - verifica o comportamento esperado do teste (validação dos métodos invocados)
         assertEquals(expected, actual, () -> firstNumber + " + " + secondNumber + " did not produce " + expected + "!");
     }
 
@@ -69,5 +72,16 @@ public class SimpleMathTest {
         Double actual = math.squareRoot(number);
         Double expected = 2D;
         assertEquals(expected, actual, () -> "The square root of " + number + " did not produce  " + expected + "!");
+    }
+
+    // Template
+    // test[System Under Test]_[Condition or State Change]_[Expected Result]
+    // Exemplo: testSum_WhenSixDotTwoIsAddedByTwo_ShouldReturnEightDotTwo
+    @Test
+    @DisplayName("Display name")
+    void testABCD_When_XYZ_Should() {
+        // Given / Arrange
+        // When / Act
+        // Then / Assert
     }
 }
