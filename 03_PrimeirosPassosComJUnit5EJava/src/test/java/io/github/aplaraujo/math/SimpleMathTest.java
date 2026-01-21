@@ -1,17 +1,49 @@
 package io.github.aplaraujo.math;
 
 
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+@SuppressWarnings("unused")
 public class SimpleMathTest {
+    // @BeforeAll - método executado antes de todos os testes unitários
+    // @BeforeEach - método executado antes de cada teste unitário
+    // @AfterEach - método executado depois de cada teste unitário
+    // @AfterAll - método executado depois de todos os testes unitários
+
+    @BeforeAll
+    static void setUp() {
+        System.out.println("Method @BeforeAll running!");
+    }
+
+    @AfterAll // limpeza dos testes
+    static void cleanUp() {
+        System.out.println("Method @AfterAll running!");
+    }
+
+    SimpleMath math;
+
+    @BeforeEach
+    void beforeEachSetUp() {
+        math = new SimpleMath();
+        System.out.println("Method @BeforeEach running!");
+    }
+
+    @AfterEach
+    void afterEachCleanUp() {
+        System.out.println("Method @AfterEach running!");
+    }
+
     @Test
     @DisplayName("Test 6.2 + 2 = 8.2")
     void testSum() {
         // Given (Arrange) - definição das variáveis que serão usadas no teste
-        SimpleMath math = new SimpleMath();
+        
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         Double expected = 8.2D;
@@ -24,7 +56,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 6.2 - 2 = 4.2")
     void testSubtract() {
-        SimpleMath math = new SimpleMath();
+        
         double firstNumber = 6.2D;
         double secondNumber = 2D;
         Double actual = math.subtract(firstNumber, secondNumber);
@@ -35,7 +67,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 5.0 * 2.0 = 10.0")
     void testMultiply() {
-        SimpleMath math = new SimpleMath();
+        
         double firstNumber = 5D;
         double secondNumber = 2D;
         Double actual = math.multiply(firstNumber, secondNumber);
@@ -46,7 +78,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test 10.0 / 2.0 = 5.0")
     void testDivide() {
-        SimpleMath math = new SimpleMath();
+        
         double firstNumber = 10.0D;
         double secondNumber = 2D;
         Double actual = math.divide(firstNumber, secondNumber);
@@ -57,7 +89,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test (10.0 + 2.0) / 2.0 = 6.0")
     void testMean() {
-        SimpleMath math = new SimpleMath();
+        
         double firstNumber = 10.0D;
         double secondNumber = 2D;
         Double actual = math.mean(firstNumber, secondNumber);
@@ -68,7 +100,7 @@ public class SimpleMathTest {
     @Test
     @DisplayName("Test square root of 4.0 = 2.0")
     void testSquareRoot() {
-        SimpleMath math = new SimpleMath();
+        
         double number = 4D;
         Double actual = math.squareRoot(number);
         Double expected = 2D;
