@@ -82,4 +82,16 @@ public class PersonServiceTest {
         // Then (Assert)
         assertEquals(person.getGender(), actual.getGender(), () -> "The last name is different!");
     }
+
+    // Lançamento de exceções
+    @DisplayName("When creating a person with null email, should throw IllegalArgumentException")
+    @Test
+    void testCreatePerson_WhenEmailIsNull_ShouldThrowIllegalArgumentException() {
+        // Given (Arrange)
+        IPersonService service = new PersonService();
+        person.setEmail(null);
+        // When (Act)
+        // Then (Assert)
+        assertThrows(IllegalArgumentException.class, () -> service.createPerson(person), () -> "Empty or null email should throw IllegalArgumentException");
+    }
 }
