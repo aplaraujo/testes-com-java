@@ -13,7 +13,7 @@ public class PersonServiceTest {
 
     @BeforeEach
     void setUp() {
-        person = person = new Person("Caroline Nair", "da Costa", "carolinenairdacosta@outllok.com", "Rua Alexandre Mendonça, 668", "Female");
+        person = new Person("Caroline Nair", "da Costa", "carolinenairdacosta@outllok.com", "Rua Alexandre Mendonça, 668", "Female");
     }
 
     @DisplayName("When creating a person with success, should return a person object")
@@ -24,6 +24,7 @@ public class PersonServiceTest {
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
+        assertNotNull(person.getId(), () -> "The ID is missing!");
         assertNotNull(actual, () -> "The createPerson() method should not return null!");
     }
 
