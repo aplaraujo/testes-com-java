@@ -10,9 +10,11 @@ import service.PersonService;
 public class PersonServiceTest {
 
     Person person;
+    IPersonService service;
 
     @BeforeEach
     void setUp() {
+        service = new PersonService();
         person = new Person("Caroline Nair", "da Costa", "carolinenairdacosta@outllok.com", "Rua Alexandre Mendonça, 668", "Female");
     }
 
@@ -20,7 +22,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldReturnPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -32,7 +34,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldContainFirstNameInReturnedPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -43,7 +45,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldContainLastNameInReturnedPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -54,7 +56,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldContainEmailInReturnedPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -65,7 +67,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldContainAddressInReturnedPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -76,7 +78,7 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenSuccess_ShouldContainGenderInReturnedPersonObject() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
+
         // When (Act)
         Person actual = service.createPerson(person);
         // Then (Assert)
@@ -88,10 +90,12 @@ public class PersonServiceTest {
     @Test
     void testCreatePerson_WhenEmailIsNull_ShouldThrowIllegalArgumentException() {
         // Given (Arrange)
-        IPersonService service = new PersonService();
         person.setEmail(null);
+        var message = "The email is null or empty";
         // When (Act)
         // Then (Assert)
-        assertThrows(IllegalArgumentException.class, () -> service.createPerson(person), () -> "Empty or null email should throw IllegalArgumentException");
+        IllegalArgumentException actual = assertThrows(IllegalArgumentException.class, () -> service.createPerson(person), () -> "Empty or null email should throw IllegalArgumentException");
+
+        assertEquals(message, actual.getMessage(), () -> "Unexpected exception message!");
     }
 }
