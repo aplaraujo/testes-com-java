@@ -50,4 +50,14 @@ public class ListTest {
         assertEquals("Aninha", list.get(anyInt()));
     }
 
+    @Test
+    void testMockingListWhenThrowsAnException() {
+        // Arrange
+        var list = mock(List.class);
+        when(list.get(anyInt())).thenThrow(new RuntimeException("Foo Bar"));
+        // Act
+        // Assert
+        assertThrows(RuntimeException.class, () -> list.get(anyInt()), () -> "Should have thrown a RuntimeException");
+    }
+
 }
