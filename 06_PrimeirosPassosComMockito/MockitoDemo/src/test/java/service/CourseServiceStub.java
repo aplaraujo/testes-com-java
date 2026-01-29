@@ -19,4 +19,9 @@ public class CourseServiceStub implements ICourseService {
                 "Microsserviços do 0 com Spring Cloud, Kotlin e Docker"
         );
     }
+
+    @Override
+    public void deleteCourse(String course) {
+
+    }
 }

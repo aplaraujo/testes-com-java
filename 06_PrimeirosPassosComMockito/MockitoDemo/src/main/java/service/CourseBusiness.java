@@ -31,4 +31,16 @@ public class CourseBusiness {
 
         return filteredCourses;
     }
+
+    // Método para excluir cursos
+    public void deleteCourseNotRelatedToSpring(String student) {
+        var allCourses = service.retrieveCourses(student);
+
+        // Filtrar os cursos de Spring
+        for(String course: allCourses) {
+            if (!course.contains("Spring")) {
+                service.deleteCourse(course);
+            }
+        }
+    }
 }
