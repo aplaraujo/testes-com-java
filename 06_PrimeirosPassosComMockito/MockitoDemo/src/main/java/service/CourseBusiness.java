@@ -15,6 +15,11 @@ public class CourseBusiness {
     // Criar um método que usa esse serviço para obter os cursos
     public List<String> retrieveCoursesRelatedToSpring(String student) {
         var filteredCourses = new ArrayList<String>();
+
+        if ("Foo Bar".equals(student)) {
+            return filteredCourses;
+        }
+
         var allCourses = service.retrieveCourses(student);
 
         // Filtrar os cursos de Spring
