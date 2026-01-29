@@ -3,7 +3,7 @@ package service;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CoreBusinessTest {
+public class CoreBusinessStubTest {
     @Test
     void testCoursesRelatedToSpring_When_UsingAStub() {
         // Given (Arrange)
