@@ -3,6 +3,7 @@ package service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
 
 import java.util.List;
 
@@ -74,13 +75,41 @@ public class CoreBusinessMockWithBDDTest {
     void deleteCourseNotRelatedToSpringUsingMockitoVerifyShouldCallMethodV2() {
         // Given (Arrange)
         given(service.retrieveCourses("Ana")).willReturn(courses);
+        String courseDocker = "Docker para Amazon AWS Implante Apps Java e .NET com Travis CI";
+        String courseSpotify = "Spotify Engineering Culture Desmistificado";
+        String courseSpring = "REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker";
         // When (Act)
         business.deleteCourseNotRelatedToSpring("Ana");
         // Then (Assert)
 
-        then(service).should().deleteCourse("Docker para Amazon AWS Implante Apps Java e .NET com Travis CI" ); // O método deve ser chamado
-        then(service).should().deleteCourse("Docker para Amazon AWS Implante Apps Java e .NET com Travis CI" );
-        then(service).should(never()).deleteCourse("REST API's RESTFul do 0 à AWS com Spring Boot 3 Java e Docker"); // Garante que um curso relacionado ao Spring nunca será excluído
+        then(service).should().deleteCourse(courseDocker); // O método deve ser chamado
+        then(service).should().deleteCourse(courseSpotify);
+        then(service).should(never()).deleteCourse(courseSpring); // Garante que um curso relacionado ao Spring nunca será excluído
+    }
+
+    @DisplayName("Delete courses not related to Spring using Capturing Arguments should call method")
+    @Test
+    void deleteCourseNotRelatedToSpringCapturingArgumentsShouldCallMethod() {
+        // Given (Arrange)
+//        courses = List.of(
+//                "Docker para Amazon AWS Implante Apps Java e .NET com Travis CI",
+//                "Microsserviços do 0 com Spring Cloud, Spring Boot e Docker"
+//        );
+
+        given(service.retrieveCourses("Ana")).willReturn(courses);
+        // Declaração da captura de argumentos
+        ArgumentCaptor<String> argumentCaptor = ArgumentCaptor.forClass(String.class);
+
+        // String courseDocker = "Docker para Amazon AWS Implante Apps Java e .NET com Travis CI";
+        // When (Act)
+        business.deleteCourseNotRelatedToSpring("Ana");
+        // Then (Assert)
+        // Capturar um argumento após a execução
+        then(service).should(times(7)).deleteCourse(argumentCaptor.capture());
+        // assertThat(argumentCaptor.getValue(), is(courseDocker));
+
+        // Captura de vários argumentos
+        assertThat(argumentCaptor.getAllValues().size(), is(7));
     }
 
 }
