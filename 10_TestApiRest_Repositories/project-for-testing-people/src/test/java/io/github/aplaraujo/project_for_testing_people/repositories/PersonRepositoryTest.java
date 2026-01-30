@@ -92,6 +92,20 @@ class PersonRepositoryTest {
     }
 
     @Test
+    public void testGivenFirstNameAndLastName_whenFindByNativeSQL_thenShouldReturnPerson() {
+        repository.save(person);
+
+        String firstName = "Betina";
+        String lastName = "Farias";
+
+        Person savedPerson = repository.findByNativeSQL(firstName, lastName);
+
+        assertNotNull(savedPerson);
+        assertEquals("Betina", person.getFirstName());
+        assertEquals("Farias", person.getLastName());
+    }
+
+    @Test
     public void testGivenPersonObject_whenUpdatePerson_thenShouldReturnSavedPerson() {
         Person savedPerson = repository.save(person);
         savedPerson.setFirstName("Betina Isabella");
