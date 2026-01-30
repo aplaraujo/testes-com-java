@@ -35,4 +35,15 @@ class PersonRepositoryTest {
         assertNotNull(person);
         assertEquals(20, personList.size());
     }
+
+    @Test
+    public void testGivenPersonObject_whenFindById_thenShouldReturnPerson() {
+        Person person = new Person("Betina", "Farias", "Avenida André Antônio Maggi, 636", "Feminino", "betina.isabella.farias@tecnew.net");
+        repository.save(person);
+
+        Person savedPerson = repository.findById(person.getId()).get();
+
+        assertNotNull(savedPerson);
+        assertEquals(savedPerson.getId(), person.getId());
+    }
 }
