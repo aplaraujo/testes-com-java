@@ -1,0 +1,18 @@
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Caroline', 'Costa', 'Rua Alexandre Mendonça, 688', 'Feminino', 'carolinenairdacosta@outllok.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Hugo Vitor', 'Martins', 'Rua F, 370', 'Masculino', 'hugovitormartins@iclud.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Giovanni Henrique', 'Cavalcanti', 'Rua Garcia, 865', 'Masculino', 'giovannihenriquecavalcanti@megamega.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Rafael', 'Bernardes', 'Travessa Tefé, 411', 'Masculino', 'rafael_miguel_bernardes@cosma.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Isis Sophia', 'Dias', 'Rua João Cipreste Filho, 354', 'Feminino', 'isis_dias@iclud.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Cecília', 'Peixoto', 'Rua São Bento, 525', 'Feminino', 'cecilia-peixoto95@usa.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Vanessa', 'Martins', 'Rua Paulo Kraisch 44, 735', 'Feminino', 'vanessa_martins@yahooo.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Rita', 'Almeida', 'Quadra T 23 Rua NS 14, 561', 'Feminino', 'rita_almeida@cincoentretenimentos.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Rafaela', 'da Paz', 'Rua Petrolina, 951', 'Feminino', 'rafaela.maria.dapaz@autbook.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Helena', 'Dias', 'Terceira Rua da Campina, 200', 'Feminino', 'helena-dias76@marcati.com');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Raul', 'Almeida', 'Rua Pacaembu, 650', 'Masculino', 'raul-almeida70@gconsult.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Ian', 'Souza', 'Rua Graciliano Ramos, 484', 'Masculino', 'ian_souza@iblojas.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Márcio', 'Silveira', 'Rua da Sementeira, 941', 'Masculino', 'marcio_silveira@accent.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Sabrina', 'Cavalcanti', 'Rua 7 de Setembro, 258', 'Feminino', 'sabrina.maya.cavalcanti@amoamar.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Larissa', 'Dias', 'Rua Princesa Isabel, 267', 'Feminino', 'larissamariahdias@vcp.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Simone', 'da Silva', 'Rua da Galáxia, 841', 'Feminino', 'simone_dasilva@abcautoservice.net');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Juliana', 'Almada', 'Rua Araújo Figueiredo, 889', 'Feminino', 'juliana.priscila.almada@escritoriogold.com.br');
+INSERT INTO tb_person(first_name, last_name, address, gender, email) VALUES('Heloisa', 'Oliveira', 'Rua Vicente Domanski, 107', 'Feminino', 'heloisa_malu_oliveira@me.com');
