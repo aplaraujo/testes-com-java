@@ -1,6 +1,7 @@
 package io.github.aplaraujo.project_for_testing_people.services;
 
 import io.github.aplaraujo.project_for_testing_people.entities.Person;
+import io.github.aplaraujo.project_for_testing_people.exceptions.ResourceNotFoundException;
 import io.github.aplaraujo.project_for_testing_people.repositories.PersonRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PersonServiceTest {
@@ -40,5 +41,16 @@ public class PersonServiceTest {
 
         assertNotNull(savedPerson);
         assertEquals("Betina", savedPerson.getFirstName());
+    }
+
+    @Test
+    public void testGivingExistingEmail_WhenSavePerson_ShouldThrowAnException() {
+        given(repository.findByEmail(anyString())).willReturn(Optional.of(person));
+
+        assertThrows(ResourceNotFoundException.class, () -> {
+            service.insert(person);
+        });
+
+        verify(repository, never()).save(any(Person.class));
     }
 }
