@@ -6,6 +6,7 @@ import io.github.aplaraujo.project_for_testing_people.repositories.PersonReposit
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonService {
@@ -24,6 +25,11 @@ public class PersonService {
     }
 
     public Person insert(Person person) {
+        Optional<Person> savedPerson = repository.findByEmail(person.getEmail());
+        if (savedPerson.isPresent()) {
+            throw new ResourceNotFoundException("This e-mail already exists!");
+        }
+
         return repository.save(person);
     }
 
