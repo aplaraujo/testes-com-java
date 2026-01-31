@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,11 +27,12 @@ public class PersonServiceTest {
     @InjectMocks
     private PersonService service;
 
-    Person person;
+    Person person, person1;
 
     @BeforeEach
     void setUp() {
         person = new Person("Betina", "Farias", "Avenida André Antônio Maggi, 636", "Feminino", "betina.isabella.farias@tecnew.net");
+        person1 = new Person("Tereza", "Assis", "Alameda Venezuela, 937", "Feminino", "terezacarolinaassis@imaxbrasil.com.br");
     }
 
     @Test
@@ -52,5 +55,35 @@ public class PersonServiceTest {
         });
 
         verify(repository, never()).save(any(Person.class));
+    }
+
+    @Test
+    public void testGivenPeopleList_WhenFindAllPeople_ShouldReturnPeopleList() {
+        given(repository.findAll()).willReturn(List.of(person, person1));
+
+        List<Person> list = service.findAll();
+
+        assertNotNull(list);
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    public void testGivenEmptyPeopleList_WhenFindAllPeople_ShouldReturnEmptyPeopleList() {
+        given(repository.findAll()).willReturn(Collections.EMPTY_LIST);
+
+        List<Person> list = service.findAll();
+
+        assertTrue(list.isEmpty());
+        assertEquals(0, list.size());
+    }
+
+    @Test
+    public void testGivenPersonId_WhenFindById_ShouldReturnPerson() {
+        given(repository.findById(anyLong())).willReturn(Optional.of(person));
+
+        Person savedPerson = service.findById(1L);
+
+        assertNotNull(savedPerson);
+        assertEquals("Betina", savedPerson.getFirstName());
     }
 }
