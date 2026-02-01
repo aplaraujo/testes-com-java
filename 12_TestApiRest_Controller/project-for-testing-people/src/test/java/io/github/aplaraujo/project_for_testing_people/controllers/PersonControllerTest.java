@@ -2,6 +2,7 @@ package io.github.aplaraujo.project_for_testing_people.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.aplaraujo.project_for_testing_people.entities.Person;
+import io.github.aplaraujo.project_for_testing_people.exceptions.ResourceNotFoundException;
 import io.github.aplaraujo.project_for_testing_people.services.PersonService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,5 +95,18 @@ class PersonControllerTest {
         response.andExpect(jsonPath("$.address", is(person.getAddress())));
         response.andExpect(jsonPath("$.gender", is(person.getGender())));
         response.andExpect(jsonPath("$.email", is(person.getEmail())));
+    }
+
+    @Test
+    public void testGivenInvalidPersonId_WhenFindPersonById_ShouldThrowNotFoundException() throws Exception {
+        // Given
+        Long personId = 100L;
+        given(service.findById(personId)).willThrow(ResourceNotFoundException.class);
+
+        // When
+        ResultActions response = mockMvc.perform(get("/person/{id}", personId));
+
+        // Then
+        response.andExpect(status().isNotFound());
     }
 }
