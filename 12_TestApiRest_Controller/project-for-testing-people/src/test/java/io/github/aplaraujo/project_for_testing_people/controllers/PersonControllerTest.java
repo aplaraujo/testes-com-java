@@ -12,10 +12,14 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -57,5 +61,20 @@ class PersonControllerTest {
         response.andExpect(jsonPath("$.address", is(person.getAddress())));
         response.andExpect(jsonPath("$.gender", is(person.getGender())));
         response.andExpect(jsonPath("$.email", is(person.getEmail())));
+    }
+
+    @Test
+    public void testGivenPeopleList_WhenFindAllPeople_ShouldReturnPeopleList() throws Exception {
+        // Given
+        List<Person> people = List.of(person, person1);
+        given(service.findAll()).willReturn(people);
+
+        // When
+        ResultActions response = mockMvc.perform(get("/person"));
+
+        // Then
+        response.andExpect(status().isOk());
+        response.andDo(print());
+        response.andExpect(jsonPath("$.size()", is(people.size())));
     }
 }
