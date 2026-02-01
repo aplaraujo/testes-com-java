@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.in;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.BDDMockito.*;
 
@@ -157,5 +158,16 @@ class PersonControllerTest {
 
         // Then
         response.andDo(print()).andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void testGivenNonExistentPersonId_WhenDeletePerson_ShouldThrowNotFoundException() throws Exception {
+        // Given
+        doThrow(new ResourceNotFoundException("Person not found!")).when(service).delete(invalidPersonId);
+        // When
+        ResultActions response = mockMvc.perform(delete("/person/{id}", invalidPersonId));
+
+        // Then
+        response.andDo(print()).andExpect(status().isNotFound());
     }
 }
