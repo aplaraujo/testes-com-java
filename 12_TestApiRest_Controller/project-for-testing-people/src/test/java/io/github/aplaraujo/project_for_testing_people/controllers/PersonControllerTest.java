@@ -131,4 +131,19 @@ class PersonControllerTest {
         response.andExpect(jsonPath("$.gender", is(updatedPerson.getGender())));
         response.andExpect(jsonPath("$.email", is(updatedPerson.getEmail())));
     }
+
+    @Test
+    public void testGivenNonExistentPersonId_WhenUpdatePerson_ShouldThrowNotFoundException() throws Exception {
+        // Given
+        Person updatedPerson = new Person("Betina Isabella", "Farias", "Avenida André Antônio Maggi, 636", "Feminino", "betina.isabella.farias@tecnew.net");
+        given(service.findById(invalidPersonId)).willThrow(ResourceNotFoundException.class);
+        given(service.update(any(Person.class))).willAnswer(invocation -> invocation.getArgument(1));
+
+        // When
+        ResultActions response = mockMvc.perform(put("/person")
+                .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(updatedPerson)));
+
+        // Then
+        response.andDo(print()).andExpect(status().isNotFound());
+    }
 }
