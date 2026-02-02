@@ -2,8 +2,5 @@ spring:
   application:
     name: project-for-testing-people
 
-  profiles:
-    active: dev
-
   jpa:
     open-in-view: false
