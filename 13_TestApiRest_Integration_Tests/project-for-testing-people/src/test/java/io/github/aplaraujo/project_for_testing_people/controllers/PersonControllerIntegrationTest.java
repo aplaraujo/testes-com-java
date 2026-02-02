@@ -205,4 +205,18 @@ public class PersonControllerIntegrationTest extends AbstractIntegrationTest {
         assertEquals("Feminino", foundPersonTwo.getGender());
         assertEquals("terezacarolinaassis@imaxbrasil.com.br", foundPersonTwo.getEmail());
     }
+
+    @Test
+    @Order(5)
+    public void integrationTestGivenPersonObject_WhenDeleteAPerson_ShouldReturnNoContent() throws JsonProcessingException {
+
+        given()
+                .spec(specification)
+                .pathParam("id", person.getId())
+                .when()
+                .delete("{id}")
+                .then()
+                .statusCode(204);
+
+    }
 }
