@@ -1,0 +1,32 @@
+services:
+  postgres-docker-service:
+    image: postgres:18-alpine
+    container_name: postgres-dev-container
+    environment:
+      POSTGRES_DB: basicdatabase
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - 5433:5432
+    volumes:
+      - ./.data/postgresql/data:/var/lib/postgresql/data
+    networks:
+      - pg-dev-network
+
+  pgadmin-docker-service:
+    image: dpage/pgadmin4
+    container_name: pgadmin--dev-container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: usuario@pokemail.net
+      PGADMIN_DEFAULT_PASSWORD: 123456
+    ports:
+      - 5050:80
+    volumes:
+      - ./.data/pgadmin:/var/lib/pgadmin
+    depends_on:
+      - postgres-docker-service
+    networks:
+      - pg-dev-network
+
+networks:
+  pg-dev-network:
+    driver: bridge
