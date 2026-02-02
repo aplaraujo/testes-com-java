@@ -3,7 +3,7 @@ spring:
     name: project-for-testing-people
 
   profiles:
-    active: test
+    active: dev
 
   jpa:
     open-in-view: false
